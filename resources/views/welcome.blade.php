@@ -45,10 +45,9 @@
         <div class="row justify-content-center">
             @foreach ($portofolios as $index => $data)
                 <div class="col-md-4 mt-3">
-                    <h2 class="fw-bold">Project 1</h2>
-                    <img src="{{ url('assets/images/') }}" alt="Image" class="rounded shadow-sm mb-2">
-                    <p>This is my first project, a simple website built with HTML,
-                        CSS, and JavaScript.</p>
+                    <h2 class="fw-bold">{{ $data->title }}</h2>
+                    <img src="{{ url("assets/images/{$data->image}") }}" alt="Image" class="rounded shadow mb-2" style="width: 100%; height: auto; max-width: 300px;">
+                    <p>{{ $data->description }}</p>
                     <a href="{{ url('#') }}" class="btn btn-primary shadow-sm">View Project</a>
                 </div>
             @endforeach

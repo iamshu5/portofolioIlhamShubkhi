@@ -25,7 +25,7 @@ class PortofolioController extends Controller
 
             return DataTables::of($data->get())->addIndexColumn()
             ->addColumn('image', function($data) {
-                return '<img src="'.url("storage/assets/images/{$data->image}").'" alt="img_'.$data->title.'" width="100px" height="auto">';
+                return '<img src="'.url("assets/images/{$data->image}").'" alt="img_'.$data->title.'" width="100px" height="auto">';
             })
             // ->addColumn('image', function($data) {
             //     return '<img src="data:image/jpeg;base64,'. $data->image . '" alt="img_' . $data->title . '" width="100px" height="auto">';
@@ -69,9 +69,9 @@ class PortofolioController extends Controller
                 return redirect('/portofolio')->with('alert', ['bg' => 'warning', 'message' => 'Title Sudah ada men']);
             }
 
-            // Menyimpan Foto
+             // Menyimpan Foto
             $fileNames = $request->image->getClientOriginalName();
-            $request->image->storeAs('assets/images', $fileNames);
+            $request->image->move(public_path('assets/images'), $fileNames);
 
             // // Ambil gambar dari request
             // $image = $request->file('image');
@@ -105,15 +105,10 @@ class PortofolioController extends Controller
 
             // Cek apakah ada gambar yang diunggah untuk diganti
             if ($request->hasFile('image')) {
-                // Mengambil gambar baru dari request
                 $image = $request->file('image');
-                
-                // Membaca konten gambar dan encode ke base64
-                $imageContent = file_get_contents($image);
-                $base64Image = base64_encode($imageContent);
-
-                // Simpan gambar dalam bentuk base64
-                $portofolios->image = $base64Image;
+                $fileName = $image->getClientOriginalName();
+                $image->move(public_path('assets/images'), $fileName);
+                $portofolios->image = $fileName;
             }
 
             $portofolios->save();
