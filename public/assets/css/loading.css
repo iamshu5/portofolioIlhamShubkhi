@@ -1,0 +1,55 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Hide scrollbars during loading */
+  }
+  
+  .loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  }
+  
+  .loading.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Optional: for the content to smoothly transition in */
+  #content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  #content.show {
+    opacity: 1;
+  }
+  
