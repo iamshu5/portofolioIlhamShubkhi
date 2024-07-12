@@ -37,18 +37,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Welcome to My Portofolio</h1>
-                <p class="text-center">This is my portofolio, where I showcase my skills
+                <h1 class="text-center fw-bold mt-2">Welcome to My Portfolio</h1>
+                <p class="text-center text-exception">This is my portfolio, where I showcase my skills
                     and experiences as a web developer.</p>
             </div>
         </div>
         <div class="row justify-content-center">
             @foreach ($portofolios as $index => $data)
-                <div class="col-md-4 mt-3">
-                    <h2 class="fw-bold">{{ $data->title }}</h2>
-                    <img src="{{ url("assets/images/{$data->image}") }}" alt="Image" class="rounded shadow mb-2" style="width: 100%; height: auto; max-width: 300px;">
-                    <p>{{ $data->description }}</p>
-                    <a href="{{ url('#') }}" class="btn btn-primary shadow-sm">View Project</a>
+                <div class="card shadow-sm mt-3" style="width: 20rem;">
+                    <img src="{{ url("assets/images/{$data->image}") }}" alt="Image" class="rounded shadow" style="width: 100%; height: 100%; max-width: 400px;">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2 class="fw-bold">{{ $data->title }}</h2>
+                        </div>
+                        <p class="card-text">{{ $data->description }}</p>
+                        <a href="{{ url('#') }}" class="btn btn-primary shadow-sm">View Project</a>
+                    </div>
                 </div>
             @endforeach
         </div>

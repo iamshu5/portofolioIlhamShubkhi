@@ -14,6 +14,6 @@ class User extends Authenticatable
 
     protected $table = 'dbo.User';
     protected $primaryKey = 'id_user';
-    protected $fillable = ['username', 'password', 'nama'];
+    protected $fillable = ['username', 'passwordHash', 'nama'];
     public $timestamps = false;
 }

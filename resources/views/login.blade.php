@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login - Pages | System</title>
+    <title>Login - Pages | Portfolio IlhamShu</title>
 
     <meta name="description" content="" />
 
@@ -57,9 +57,29 @@
           <!-- Register -->
           <div class="card">
             <div class="card-body">
+              {{-- Alert --}}
+              @if (session()->exists('alert'))
+                  <div class="alert alert-{{ session()->get('alert') ['bg'] }} alert-dismissible fade show" role="alert">
+                      {{ session()->get('alert') ['message'] }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true"></span>
+                      </button>
+                  </div>
+              @endif
+
+              @if($errors->any())
+                  <div class="alert alert-danger" role="alert">
+                      @foreach($errors->all() as $error )
+                          {{ $error }}
+                      @endforeach
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true"></span>
+                      </button>
+                  </div>
+              @endif
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="{{ url('/auth/login') }}" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <img src="" alt="Logo" class="rounded">
                   </span>
@@ -67,10 +87,11 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Welcome to System</h4>
-              <p class="mb-4">Silahkan Login menggunakan Akun Anda</p>
+              <h4 class="mb-2 text-center">Portfolio Ilhamshu</h4>
+              <p class="mb-4">Silahkan Login</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html">
+              <form method="POST">
+                @csrf
                 <div class="mb-3">
                    <label for="username" class="form-label">Username</label>
                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
@@ -86,7 +107,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                  <button class="btn btn-primary d-grid w-100" type="submit" name="login">Login</button>
                 </div>
               </form>
             </div>
