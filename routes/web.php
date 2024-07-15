@@ -33,12 +33,10 @@ Route::middleware('auth')->group(function() {
         Route::get('/portofolio/destroy/{portofolios}', 'destroy')->name('auth.portofolio');
     });
 
-    
-});
-
-Route::controller(UserController::class)->group(function() {
-    Route::get('/user', 'index')->name('auth.user');
-    Route::post('/user/store', 'store')->name('auth.user');
-    Route::post('/user/update/{users}', 'update')->name('auth.user');
-    Route::get('/user/destroy/{users}', 'destroy')->name('auth.user');
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/user', 'index')->name('auth.user');
+        Route::post('/user/store', 'store')->name('auth.user');
+        Route::post('/user/update/{user}', 'update')->name('auth.user');
+        Route::get('/user/destroy/{user}', 'destroy')->name('auth.user');
+    });
 });

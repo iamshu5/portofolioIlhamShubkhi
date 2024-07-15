@@ -11,7 +11,7 @@
             <a href="#" target="_blank" class="footer-link fw-medium">Company Profile</a>
         </div>
         <div class="d-none d-lg-inline-block">
-            <a href="#" class="footer-link me-4" target="_blank">Test</a>
+            <a href="{{ url('#') }}" class="footer-link me-4" target="_blank">Website Portofolio</a>
         </div>
     </div>
 </footer>

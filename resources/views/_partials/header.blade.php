@@ -1,3 +1,4 @@
+@php $user = Auth::User()  @endphp
 <!DOCTYPE html>
 
 <html lang="en" class="light-style layout-menu-fixed layout-compact">
@@ -80,7 +81,7 @@
             <!-- Portofolio -->
             <li class="menu-item {{ $title === 'Portofolio' ? 'active' : '' }}">
                 <a href="{{ url('/portofolio') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-pro"></i>
+                    <i class='menu-icon tf-icons bx bx-briefcase'></i>
                   <div data-i18n="Basic">Portofolio</div>
                 </a>
             </li>
@@ -154,7 +155,7 @@
             <!-- Users -->
             <li class="menu-item  {{ $title === 'Users' ? 'active' : '' }}">
               <a href="{{ url('/user') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <i class='menu-icon tf-icons bx bx-group'></i>
                 <div data-i18n="Basic">Users</div>
               </a>
             </li>
@@ -179,12 +180,12 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             {{-- Clock --}}
-            <i class='bx bx-time' ></i> <span class="ml-md-3 font-italic fw-bold" id="clock-realtime"> <?= date('Y-m-d H:i:s') ?> </span>
+            <i class='menu-icon tf-icons bx bx-time' ></i> <span class="ml-md-3 font-italic fw-bold" id="clock-realtime"> <?= date('Y-m-d H:i:s') ?> </span>
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <li class="nav-item lh-1 me-3">
-                  John Doe
+                  <i class='menu-icon tf-icons bx bx-user' style='color:#505050' ></i> {{ $user->nama }} |
                 </li>
 
                 <!-- User -->
@@ -204,7 +205,7 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">John Doe</span>
+                            <span class="fw-medium d-block">{{ $user->nama }}</span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -229,7 +230,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item bg-danger text-white" href="{{ url('/Auth/Login') }}">
+                      <a class="dropdown-item bg-danger text-white" href="{{ url('/auth/logout') }}">
                         <i class="bx bx-power-off me-2"></i>
                         <span class="align-middle">Log Out</span>
                       </a>

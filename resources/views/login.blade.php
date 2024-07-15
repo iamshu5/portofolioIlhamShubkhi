@@ -79,7 +79,7 @@
               @endif
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="{{ url('/auth/login') }}" class="app-brand-link gap-2">
+                <a href="{{ url('/Auth/Login') }}" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <img src="" alt="Logo" class="rounded">
                   </span>
@@ -94,15 +94,15 @@
                 @csrf
                 <div class="mb-3">
                    <label for="username" class="form-label">Username</label>
-                   <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />
+                   <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" value="{{ old('username') }}" autofocus />
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
                   </div>
                   <div class="input-group input-group-merge">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password" />
+                    <input type="password" id="passwordHash" class="form-control" name="passwordHash" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      aria-describedby="password" value="{{ old('passwordHash') }}"/>
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>

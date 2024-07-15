@@ -65,10 +65,11 @@ class UserController extends Controller
 
     public function update(Request $request, User $user) {
         try{
-            // $this->validate($request, [
-            //     'username' => 'required',
-            //     'nama' => 'required'
-            // ]);
+            $this->validate($request, [
+                'username' => 'required',
+                'passwordHash' => 'nullable|min:10|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/',
+                'nama' => 'required'
+            ]);
 
             $user->username = $request->username;
             $user->passwordHash = !empty($request->passwordHash) ? Hash::make($request->passwordHash) : $user->passwordHash;
@@ -76,7 +77,7 @@ class UserController extends Controller
 
             $user->save();
 
-            return redirect('/user')->with('alert', ['bg' => 'success', 'message' => ' ' . $user->nama . 'berhasil diperbarui!']);
+            return redirect('/user')->with('alert', ['bg' => 'success', 'message' => ' ' . $user->nama . ' berhasil diperbarui!']);
         }catch(\Exception $e) {
             return redirect('/user')->with('alert', ['bg' => 'danger', 'message' => 'Terjadi Kesalahan: ' . $e->getMessage()]);
         }
@@ -86,7 +87,7 @@ class UserController extends Controller
     public function destroy(User $user) {
         try{
             $user->delete();
-            return redirect('/user')->with('alert', ['bg' => 'success', 'message' => 'Data' . $user->nama . ' Berhasil di hapus']);
+            return redirect('/user')->with('alert', ['bg' => 'success', 'message' => 'Data ' . $user->nama . ' Berhasil di hapus']);
         }catch(\Exception $e) {
             return redirect('/user')->with('alert', ['bg' => 'danger', 'message' => 'Terjadi Kesalahan: ' . $e->getMessage()]);
         }
