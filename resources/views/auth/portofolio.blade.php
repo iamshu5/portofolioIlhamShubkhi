@@ -180,7 +180,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center">
-                <img src="" id="gambarBesar" class="img-fluid shadow">
+                <img src="" id="gambarBesar" class="img-fluid shadow" style="width: 100%; height: 100%;">
             </div>
         </div>
     </div>
@@ -243,7 +243,7 @@
                 [5, 25, 50, "All"] 
             ],
             dom:
-                "<'row'<'col-md-2'l><'col-md-5'B><'col-md-4'f>>" +
+                "<'row'<'col-md-2'l><'col-md-5'B><'col-md-5'f>>" +
                 "<'row'<'col-md-12'tr>>" +
                 "<'row'<'col-md-5'i><'col-md-7'p>>",
             buttons: [
@@ -260,7 +260,7 @@
 
         setInterval(function() {
             table.ajax.reload(null, false); // Reloads data without resetting the pagination
-        }, 500000); // 30000 milliseconds = 30 seconds
+        }, 300000); // 30000 milliseconds = 30 seconds
         // END DATATABLE
 
         $(document).ready(function (e) {
