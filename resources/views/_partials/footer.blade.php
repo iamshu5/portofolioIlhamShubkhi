@@ -45,6 +45,7 @@
     <script src="https://momentjs.com/downloads/moment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Main JS -->
     <script src="{{ url('assets/js/main.js') }}"></script>
@@ -118,6 +119,44 @@
             });
         });
         // END LOADING
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const signalIndicator = document.getElementById('signal-indicator');
+            let previousStatus = navigator.onLine ? 'online' : 'offline';
+
+            function updateSignalStatus(status) {
+                if (status === 'online') {
+                    signalIndicator.classList.remove('bg-danger', 'bg-warning');
+                    signalIndicator.classList.add('bg-success');
+
+                    if (previousStatus === 'offline') {
+                        Swal.fire({
+                            title: "Internet Terhubung Kembali",
+                            text: "Kembali Online!",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+                    }
+                } else if (status === 'offline') {
+                    signalIndicator.classList.remove('bg-success', 'bg-warning');
+                    signalIndicator.classList.add('bg-danger');
+
+                    Swal.fire({
+                        title: "Internet Hilang",
+                        text: "Tidak terhubung ke internet!",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 5000
+                    });
+                }
+                previousStatus = status;
+            }
+
+            window.addEventListener('online', () => updateSignalStatus('online'));
+            window.addEventListener('offline', () => updateSignalStatus('offline'));
+            updateSignalStatus(previousStatus);
+        });
     </script>
 </body>
 </html>
